@@ -1,0 +1,34 @@
+<div class="mycontainer ">
+    <div class="wrapper">
+        <div class="overlay" *ngIf="showSpinner">
+            <div class="spinner-wrapper">
+                <mat-spinner></mat-spinner>
+
+            </div>
+        </div>
+    </div>
+    <div class="header">
+        <h1> Enter Details</h1>
+    </div>
+    <div class="formContent">
+        <form [formGroup]="postsForm" (ngSubmit)="onSubmit()" class="form">
+            <mat-label>Enter Title</mat-label>
+            <mat-form-field class="fwidth">
+                <input matInput placeholder="Ex. tradexa" value="My Title" formControlName="title">
+                <mat-error *ngIf="postsForm.controls['title'].invalid">{{getTitleerrorMessage()}}</mat-error>
+            </mat-form-field>
+            <mat-label>Body</mat-label>
+            <mat-form-field class="fwidth">
+                <textarea matInput placeholder=" Enter body content here...." formControlName="body"></textarea>
+                <mat-error *ngIf="postsForm.controls['body'].invalid">{{getBodyErrorMessage()}}</mat-error>
+            </mat-form-field>
+            <div align="end">
+                <button mat-raised-button color="accent" [mat-dialog-close]="true">Cancel</button>
+
+                <button mat-raised-button color="primary" type="submit" [disabled]="!postsForm.valid">
+                    Add data</button>
+            </div>
+
+        </form>
+    </div>
+</div>
